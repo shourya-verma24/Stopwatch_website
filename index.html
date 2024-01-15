@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  button{
+    height: 30px;
+    margin: 9px;
+    border: firebrick;
+    border-radius: 3px;
+    border-color: blue;
+  }
+</style>
+<body>
+  <div style="border: 2px solid blue; height: 50px;display: flex;justify-content: space-evenly;">
+    <h1 id="display_time"; style="margin:5px ;">00:00:00</h1>
+    <button onclick="watchStart()">Start</button>
+    <button onclick="pause()">Pause</button>
+    <button onclick="Reset()">Reset</button>
+  </div>
+  
+  
+</body>
+</html>
+<script>
+  let [seconds,minutes,hours] = [00,00,00]
+  let display_time = document.getElementById("display_time")
+  let  timer = null;
+  //har sec chalaa hai
+  function stopwatch(){
+    seconds++;
+    if (seconds == 60){
+      seconds = 00;
+      minutes++;
+      if (minutes == 60){
+        minutes = 00;
+        hours++;
+      }
+    }
+    display_time.innerHTML = hours+"H"+":"+minutes+"M"+":"+seconds+"S";
+  }
+
+  function watchStart(){
+    if (timer !==null)
+    {
+     clearInterval(timer);
+    }
+   timer = setInterval(stopwatch,1000); // isli id timer me store hogi
+  }
+  function pause()
+    {
+      clearInterval(timer);
+    }
+  function Reset()
+    {
+      clearInterval(timer);
+      [seconds,minutes,hours] = [00,00,00]
+      display_time.innerHTML="00:00:00"
+    }
+  
+</script>
